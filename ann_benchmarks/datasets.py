@@ -378,7 +378,7 @@ def random_float(out_fn: str, n_dims: int, n_samples: int, centers: int, distanc
     import sklearn.datasets
 
     X, _ = sklearn.datasets.make_blobs(n_samples=n_samples, n_features=n_dims, centers=centers, random_state=1)
-    X_train, X_test = train_test_split(X, test_size=0.1)
+    X_train, X_test = train_test_split(X, test_size=10000)
     write_output(X_train, X_test, out_fn, distance)
 
 
@@ -581,6 +581,8 @@ DATASETS: Dict[str, Callable[[str], None]] = {
     "mnist-784-euclidean": mnist,
     "random-xs-20-euclidean": lambda out_fn: random_float(out_fn, 20, 10000, 100, "euclidean"),
     "random-s-100-euclidean": lambda out_fn: random_float(out_fn, 100, 100000, 1000, "euclidean"),
+    "random-s-128-62.5m-euclidean": lambda out_fn: random_float(out_fn, 128, 62510000, 100, "euclidean"),
+    "random-s-768-10m-euclidean": lambda out_fn: random_float(out_fn, 768, 10010000, 100, "euclidean"),
     "random-xs-20-angular": lambda out_fn: random_float(out_fn, 20, 10000, 100, "angular"),
     "random-s-100-angular": lambda out_fn: random_float(out_fn, 100, 100000, 1000, "angular"),
     "random-xs-16-hamming": lambda out_fn: random_bitstring(out_fn, 16, 10000, 100),
